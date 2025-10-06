@@ -1,0 +1,48 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the first name and last name of all patients from the `patients` table who **do not have any recorded allergies** (`allergies` column is `NULL`).
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need the columns: `first_name` and `last_name`.
+   * We want to filter only those rows where `allergies` is **NULL** (no allergy information available).
+
+2. **Use SQL SELECT statement:**
+
+   * The `SELECT` clause specifies which columns to retrieve.
+   * The `FROM` clause specifies the table (`patients`).
+   * The `WHERE` clause uses `IS NULL` to filter rows where the `allergies` column has a NULL value.
+
+3. **Final Query:**
+
+```sql
+SELECT first_name, last_name
+FROM patients
+WHERE allergies IS NULL;
+```
+
+---
+
+### **Time Complexity:**
+
+* Without indexing: **O(N)** — full table scan required.
+* With an index on `allergies`: depends on the database engine but generally improves performance for large datasets.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — space needed to store the selected rows and columns in output.
+
+---
+
+If you want, I can also give you a **variation of this query** that checks for **both NULL and empty allergy information** in one step, which is often a practical requirement in real-world databases.
+Do you want me to?

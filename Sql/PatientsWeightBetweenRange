@@ -1,0 +1,59 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the `first_name` and `last_name` of all patients from the `patients` table whose **weight is between 100 and 120** (inclusive).
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need two columns: `first_name` and `last_name`.
+   * We want only patients whose `weight` falls within the range `100` to `120`.
+   * The SQL `BETWEEN` operator is ideal for range checks.
+
+2. **Use SQL SELECT statement:**
+
+   * The `SELECT` clause specifies the columns to retrieve.
+   * The `FROM` clause specifies the table (`patients`).
+   * The `WHERE` clause uses `BETWEEN 100 AND 120` to filter the range (inclusive).
+
+3. **Final Query:**
+
+```sql
+SELECT first_name, last_name
+FROM patients
+WHERE weight BETWEEN 100 AND 120;
+```
+
+---
+
+### **Time Complexity:**
+
+* Without indexing: **O(N)** — full table scan needed to check every row’s `weight`.
+* With an **index** on the `weight` column: **O(log N)** lookup time.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — proportional to the number of rows matching the condition and the size of selected columns.
+
+---
+
+💡 **Extra Note:**
+
+* `BETWEEN` in SQL includes the boundary values by default (i.e., `100` and `120` are included).
+* For exclusive range, use:
+
+```sql
+WHERE weight > 100 AND weight < 120;
+```
+
+---
+
+If you want, I can also give a **real-world optimization** for this query for very large datasets with numeric range searches.

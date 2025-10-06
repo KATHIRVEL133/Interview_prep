@@ -1,0 +1,48 @@
+Here’s the structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the first name, last name, and gender of all patients whose gender is **male ('M')** from the `patients` table.
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need specific columns: `first_name`, `last_name`, and `gender`.
+   * We want only records where `gender = 'M'`.
+
+2. **Use SQL SELECT statement:**
+
+   * The `SELECT` clause specifies the columns to retrieve.
+   * The `FROM` clause specifies the table (`patients`).
+   * The `WHERE` clause filters the data based on the condition `gender = 'M'`.
+
+3. **Final Query:**
+
+```sql
+SELECT first_name, last_name, gender
+FROM patients
+WHERE gender = 'M';
+```
+
+---
+
+### **Time Complexity:**
+
+* SQL queries depend on the database engine and indexes.
+* Without indexes: **O(N)** — where N is the number of rows in the table.
+* With an index on `gender`: **O(log N)** in many cases due to index search efficiency.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — proportional to the number of rows returned and the size of the selected columns.
+
+---
+
+If you want, I can also give you an **optimized approach** for this query using indexing to improve performance.

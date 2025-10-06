@@ -1,0 +1,61 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the **full name** of all patients from the `patients` table by concatenating the `first_name` and `last_name` columns with a space in between.
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We want a **single column** combining first and last names.
+   * The `CONCAT()` function in SQL allows combining strings.
+   * Use a space `' '` between names for readability.
+   * Alias the result as `full_name` for clarity.
+
+2. **Use SQL SELECT statement:**
+
+   * `SELECT CONCAT(first_name, ' ', last_name)` concatenates the names with a space.
+   * `AS full_name` gives a meaningful name to the result column.
+   * The `FROM` clause specifies the table (`patients`).
+
+3. **Final Query:**
+
+```sql
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM patients;
+```
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — one pass through the table to process each row.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — depends on the number of rows and length of concatenated names.
+
+---
+
+💡 **Extra Notes:**
+
+* In some databases (e.g., Oracle), string concatenation uses `||` instead of `CONCAT()`.
+* In SQL Server, you can use:
+
+```sql
+SELECT first_name + ' ' + last_name AS full_name
+FROM patients;
+```
+
+* Handle `NULL` values carefully — `CONCAT()` treats `NULL` as an empty string in MySQL, but behavior can differ across DBMS.
+
+---
+
+If you want, I can also give a **version that handles NULL first names or last names gracefully** so the full name is never broken.

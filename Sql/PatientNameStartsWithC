@@ -1,0 +1,57 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the `first_name` of all patients from the `patients` table whose first name **starts with the letter 'c'**.
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need only the `first_name` column.
+   * We want to filter names that start with `'c'`.
+   * In SQL, pattern matching can be done using the `LIKE` operator with `%`.
+
+2. **Use SQL SELECT statement:**
+
+   * The `SELECT` clause specifies the column to retrieve.
+   * The `FROM` clause specifies the table (`patients`).
+   * The `WHERE` clause uses `LIKE 'c%'` to filter names starting with `'c'`.
+
+     * `%` means any number of characters (including zero).
+
+3. **Final Query:**
+
+```sql
+SELECT first_name
+FROM patients
+WHERE first_name LIKE 'c%';
+```
+
+---
+
+### **Time Complexity:**
+
+* Without indexing on `first_name`: **O(N)** — full table scan is required.
+* With a proper **B-Tree index** on `first_name`: **O(log N)** lookup for prefix searches (depends on DB engine).
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — space required to store the output rows.
+
+---
+
+💡 **Extra Note:**
+
+* SQL `LIKE` is **case-sensitive** in some databases (like PostgreSQL), but **case-insensitive** in others (like MySQL by default).
+* If case-insensitive search is required, use functions like `LOWER(first_name) LIKE 'c%'` or database-specific collations.
+
+---
+
+If you want, I can also give you an **optimized version** of this query for faster searches on large datasets.

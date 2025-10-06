@@ -1,0 +1,63 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Update the `patients` table so that all patients who have **no recorded allergies** (`allergies` column is `NULL`) are assigned the value `"NKA"` (No Known Allergies).
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need to modify existing data in the `patients` table.
+   * Only rows where `allergies IS NULL` should be updated.
+   * The `allergies` column should be set to `'NKA'`.
+
+2. **Use SQL UPDATE statement:**
+
+   * `UPDATE` specifies the table to update.
+   * `SET` specifies the new value for the column.
+   * `WHERE` filters rows so only those with `NULL` allergies are updated.
+
+3. **Final Query:**
+
+```sql
+UPDATE patients
+SET allergies = 'NKA'
+WHERE allergies IS NULL;
+```
+
+---
+
+### **Time Complexity:**
+
+* Without indexing: **O(N)** — full table scan to check each row’s allergies column.
+* With an index on `allergies`: faster lookup of `NULL` entries, potentially **O(log N)**.
+
+---
+
+### **Space Complexity:**
+
+* **O(1)** — updates are performed in place, no extra space required except transaction logs.
+
+---
+
+💡 **Extra Notes:**
+
+* Ensure you have proper backups or a transaction before running update queries on large datasets to prevent accidental data loss.
+* If you want to verify the changes before updating, run:
+
+```sql
+SELECT * FROM patients WHERE allergies IS NULL;
+```
+
+* If working with case-sensitive databases, be aware of possible `NULL` vs. empty string differences.
+
+---
+
+If you want, I can also give a **version of this query that updates allergies to `'NKA'` only if the column is `NULL` or empty (`''`)** for completeness.
+
+Do you want me to?

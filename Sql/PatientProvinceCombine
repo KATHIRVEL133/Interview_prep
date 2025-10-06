@@ -1,0 +1,75 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the `first_name`, `last_name`, and `province_name` of all patients by joining the `patients` table with the `province_names` table on their `province_id`.
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need columns from **two tables**:
+
+     * `first_name`, `last_name` from `patients`
+     * `province_name` from `province_names`
+   * The join condition is `patients.province_id = province_names.province_id`.
+
+2. **Use SQL JOIN operation:**
+
+   * This query uses an **inner join** (implicit join via the `WHERE` clause).
+   * An inner join returns only rows where the join condition is true.
+
+3. **Final Query:**
+
+```sql
+SELECT first_name, last_name, province_name
+FROM patients, province_names
+WHERE patients.province_id = province_names.province_id;
+```
+
+---
+
+### **Better Practice (Explicit JOIN syntax):**
+
+It’s better to use explicit `JOIN` syntax for readability and maintainability:
+
+```sql
+SELECT p.first_name, p.last_name, pn.province_name
+FROM patients p
+JOIN province_names pn ON p.province_id = pn.province_id;
+```
+
+---
+
+### **Time Complexity:**
+
+* **O(M × N)** without indexes — Cartesian product filtered by condition.
+* With indexes on `province_id` in both tables: **O(M + N)** in most DBMS implementations.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — space required to store the result of the join.
+
+---
+
+💡 **Extra Notes:**
+
+* If you want to include patients who do not have a matching province, use a **LEFT JOIN** instead of an inner join:
+
+```sql
+SELECT p.first_name, p.last_name, pn.province_name
+FROM patients p
+LEFT JOIN province_names pn ON p.province_id = pn.province_id;
+```
+
+* Always ensure proper indexing on the join column (`province_id`) for performance optimization.
+
+---
+
+If you want, I can also make a **diagram showing how the join works** visually for this query so it’s easier to understand.

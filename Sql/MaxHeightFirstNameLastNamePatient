@@ -1,0 +1,67 @@
+Here’s a structured note for your SQL query:
+
+---
+
+### **Problem Statement:**
+
+Retrieve the `first_name`, `last_name`, and `height` of patient(s) with the **maximum height** from the `patients` table.
+
+---
+
+### **Solution Approach:**
+
+1. **Understand the requirement:**
+
+   * We need the patient(s) with the tallest height.
+   * Use a **subquery** to first find the maximum height.
+   * Filter patients whose height equals this maximum height.
+
+2. **Use SQL SELECT with subquery:**
+
+   * Subquery: `(SELECT MAX(height) FROM patients)` gets the maximum height.
+   * Outer query: selects details of patients whose height equals the maximum.
+
+3. **Final Query:**
+
+```sql
+SELECT first_name, last_name, height
+FROM patients
+WHERE height = (SELECT MAX(height) FROM patients);
+```
+
+---
+
+### **Time Complexity:**
+
+* Without indexing: **O(N)** for subquery + **O(N)** for outer query → **O(N)** overall (two full scans).
+* With an index on `height`: subquery can be **O(1)** or **O(log N)**, improving efficiency.
+
+---
+
+### **Space Complexity:**
+
+* **O(result_size)** — space to store the result of matching rows.
+
+---
+
+💡 **Extra Notes:**
+
+* This query can return **multiple patients** if more than one patient has the maximum height.
+* For large datasets, it’s more efficient to use a **window function** if your DBMS supports it:
+
+```sql
+SELECT first_name, last_name, height
+FROM (
+    SELECT first_name, last_name, height, RANK() OVER (ORDER BY height DESC) AS rnk
+    FROM patients
+) sub
+WHERE rnk = 1;
+```
+
+* Window functions avoid scanning the table twice and are more efficient for big datasets.
+
+---
+
+If you want, I can also give a **visual diagram showing how this subquery works** so it’s easier to understand.
+
+Do you want me to?
