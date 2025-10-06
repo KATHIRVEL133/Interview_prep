@@ -1,0 +1,33 @@
+
+Problem statement :
+   Find the second smallest and largest element in an array containing duplicate array.
+Solutions:
+  Brute Force:
+     If the array containing not duplicate elements we can sort the array and find the answer 
+     if(size>2) else return -1;
+     Time Complexity:
+        O(N*logN)
+    Space Complexity:
+        O(1)
+  Better Approach:(2 traversal approach)
+     Find the maximum and minimum ele from the array.
+     After that again traverse the array with the condition if(arr[i]<second_small&&arr[i]!=small) 
+   Time Complexity:
+      O(2*N)
+    Space Complexity:
+      O(1)
+  Optimized Approach:
+     Within one traversal we can find the max and min ele 
+        if(arr[i]<small)
+        {
+             small = arr[i];
+             second_small = small;
+        }
+        else if(arr[i]<second_small&&arr[i]!=small)
+        {
+            second_small = arr[i]
+        }
+     Time Complexity:
+       O(N)
+     Space Complexity:
+       O(1)

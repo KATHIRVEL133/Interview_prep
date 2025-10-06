@@ -1,0 +1,18 @@
+Problem   
+  We have to find the maximum element in an array.
+  Solution:
+     Brute force :
+        Intution :
+             Sorting in ascending order makes the largest element move to (n-1)th index.
+        Time complexity:
+             O(NlogN)
+        Space complexity:
+              O(N)
+    Optimized:
+        Intution:
+            Updating the max variable when there is an largest element than the previous value.
+        Time complexity:
+            O(N)
+        Space complexity:
+            O(1)
+        

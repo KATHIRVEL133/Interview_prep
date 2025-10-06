@@ -1,0 +1,19 @@
+Problem Statement:
+  Given an array find whether the array is sorted or not
+Solutions:
+  Brute Force:
+    Intution:
+      starting from index i(o->n-1) check whether the current element smaller for remaining i+1 elements
+    Time complexity:
+      O(N*N)
+    Space complexity:
+      O(1)
+  Optimized:
+    Intution:
+     Find in one traversal
+     Just compare arr[i] and arr[i-1]
+     if(arr[i]<arr[i-1]) return false;
+    Time complexity:
+      O(N)
+    Space complexity:
+      O(1)
