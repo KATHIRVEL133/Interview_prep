@@ -1,0 +1,22 @@
+problem :
+  We have to remove duplicates in an array inplace by replacing in the array itself. That means first n positions it must contains the unique elements
+  remaining positions can be any elements.
+Brute Force:
+   Intution:
+           We can use linkedhashset. We can add all the elements into the hashset that will remove all duplicates.
+    Time Complexity:
+          O(N^2)
+    Space Complexity:
+          O(N) 
+Optimal:
+    Intution:
+         We can use two pointers here. By placing i pointer at first. Again we loop using j pointer starting at 1st index.
+         if(arr[i]!=arr[j])
+         {
+            i++;
+            arr[i]=arr[j];
+         }
+         Time Complexity:
+          O(N)
+         Space Complexity:
+          O(1) 

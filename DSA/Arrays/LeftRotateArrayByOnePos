@@ -1,0 +1,27 @@
+**Problem:**
+We have to rotate the given array by one position to the left. The first element moves to the end of the array, and all other elements shift one position to the left.
+
+---
+
+**Brute Force:**
+
+* **Intuition:**
+  We can create a temporary array to store the rotated result.
+  Starting from index `1`, we copy elements from the original array into the new array starting at index `0`.
+  Finally, we place the first element of the original array at the last index of the temporary array.
+* **Time Complexity:**
+  **O(N)** — We traverse the array once to copy elements.
+* **Space Complexity:**
+  **O(N)** — We use an additional temporary array of size `n` to store the result.
+
+---
+
+**Optimal:**
+
+* **Intuition:**
+  Instead of using an extra array, we can perform the rotation **in-place**.
+  Store the first element in a temporary variable, shift all other elements one position to the left, and then assign the stored element to the last position.
+* **Time Complexity:**
+  **O(N)** — Each element is moved once.
+* **Space Complexity:**
+  **O(1)** — Only a constant amount of extra space is used.
