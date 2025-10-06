@@ -1,0 +1,48 @@
+**Problem:**
+We need to find the **lower bound** of a given number `x` in a **sorted array**.
+The **lower bound** is the index of the **first element greater than or equal to `x`**.
+If all elements are smaller than `x`, return `n` (the size of the array).
+
+---
+
+### **Brute Force:**
+
+* **Intuition:**
+  Traverse the array from the beginning and compare each element with `x`.
+  As soon as we find an element `arr[i] >= x`, we return its index since the array is sorted — that element is the first one not smaller than `x`.
+  If no such element is found, return `n` (i.e., `x` is greater than all array elements).
+* **Time Complexity:**
+  **O(N)** — We may need to check all elements in the worst case.
+* **Space Complexity:**
+  **O(1)** — No extra data structures used.
+
+---
+
+### **Optimal:**
+
+* **Intuition:**
+  Use **Binary Search** since the array is sorted.
+  Maintain two pointers, `low = 0` and `high = n - 1`, and keep track of a possible answer (`ans = n`).
+
+  * Compute `mid = (low + high) / 2`.
+  * If `arr[mid] >= x`, then `mid` could be the lower bound, so store it in `ans` and move `high = mid - 1` (to find a smaller index).
+  * Else, move `low = mid + 1` (search right half).
+    Continue until `low > high`.
+    Finally, `ans` holds the index of the lower bound.
+* **Time Complexity:**
+  **O(log N)** — Each step halves the search space.
+* **Space Complexity:**
+  **O(1)** — Only a few variables are used.
+
+---
+
+### 🧠 **Summary Table**
+
+| Approach                | Time Complexity | Space Complexity | Key Idea                                             |
+| ----------------------- | --------------- | ---------------- | ---------------------------------------------------- |
+| Brute Force             | O(N)            | O(1)             | Linearly search for the first element ≥ x            |
+| Optimal (Binary Search) | O(log N)        | O(1)             | Use binary search to locate the boundary efficiently |
+
+---
+
+Would you like me to show the **optimized binary search version** of `lowerBound()` as well?

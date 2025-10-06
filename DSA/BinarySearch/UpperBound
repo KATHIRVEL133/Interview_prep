@@ -1,0 +1,48 @@
+**Problem:**
+We need to find the **upper bound** of a given number `x` in a **sorted array**.
+The **upper bound** is defined as the **index of the first element strictly greater than `x`**.
+If all elements are less than or equal to `x`, we return `n` (the size of the array).
+
+---
+
+### **Brute Force:**
+
+* **Intuition:**
+  Traverse the array linearly from the start and compare each element with `x`.
+  The first element that is **strictly greater than `x`** gives us the **upper bound**.
+  If no such element exists (i.e., all elements ≤ `x`), we return `n`.
+* **Time Complexity:**
+  **O(N)** — In the worst case, we may have to traverse the entire array.
+* **Space Complexity:**
+  **O(1)** — Only a few variables are used; no extra space required.
+
+---
+
+### **Optimal:**
+
+* **Intuition:**
+  Since the array is **sorted**, we can use **Binary Search** to find the upper bound efficiently.
+  Maintain two pointers: `low = 0` and `high = n - 1`, and a variable `ans = n` to store the result.
+
+  * Compute `mid = (low + high) / 2`.
+  * If `arr[mid] > x`, then `mid` could be a valid upper bound → store it in `ans` and move `high = mid - 1` (to search for a smaller index).
+  * Else (`arr[mid] <= x`), move `low = mid + 1` (since we need a strictly greater element).
+    Continue until `low > high`.
+    Finally, `ans` will hold the index of the upper bound.
+* **Time Complexity:**
+  **O(log N)** — Each step halves the search range.
+* **Space Complexity:**
+  **O(1)** — Constant extra space.
+
+---
+
+### 🧠 **Summary Table**
+
+| Approach                | Time Complexity | Space Complexity | Key Idea                                                      |
+| ----------------------- | --------------- | ---------------- | ------------------------------------------------------------- |
+| Brute Force             | O(N)            | O(1)             | Linearly find first element > x                               |
+| Optimal (Binary Search) | O(log N)        | O(1)             | Use binary search to locate first greater element efficiently |
+
+---
+
+Would you like me to provide the **binary search implementation** for this `upperBound()` function as well (with full code and comments)?

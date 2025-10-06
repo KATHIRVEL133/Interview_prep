@@ -1,0 +1,53 @@
+**Problem:**
+We need to find the **insert position** of a target element `x` in a **sorted array**.
+If `x` is already present, return its index.
+If not, return the **index where it should be inserted** to maintain the sorted order.
+
+---
+
+### **Brute Force:**
+
+* **Intuition:**
+  Traverse the array linearly and find the **first element greater than or equal to `x`**.
+  That index will be the correct position to insert `x`.
+  If all elements are smaller than `x`, the insert position will be at the end (`n`).
+* **Time Complexity:**
+  **O(N)** — We may need to traverse the whole array.
+* **Space Complexity:**
+  **O(1)** — No extra space used.
+
+---
+
+### **Optimal:**
+
+* **Intuition:**
+  Use **Binary Search** since the array is sorted.
+  We maintain two pointers, `low = 0` and `high = n - 1`, and a variable `ans = n` to store the potential insert position.
+
+  * Find the middle index `mid = (low + high) / 2`.
+  * If `arr[mid] >= x`, this could be a valid insert position → store it in `ans`, and move `high = mid - 1` to find a smaller index.
+  * If `arr[mid] < x`, move `low = mid + 1` to search on the right side.
+    Continue until `low > high`.
+    Finally, `ans` holds the index where `x` should be inserted.
+* **Time Complexity:**
+  **O(log N)** — The search range halves with each step.
+* **Space Complexity:**
+  **O(1)** — Only a constant number of variables used.
+
+---
+
+### 🧠 **Summary Table**
+
+| Approach                | Time Complexity | Space Complexity | Key Idea                                              |
+| ----------------------- | --------------- | ---------------- | ----------------------------------------------------- |
+| Brute Force             | O(N)            | O(1)             | Linear scan to find correct position                  |
+| Optimal (Binary Search) | O(log N)        | O(1)             | Use binary search to find insertion index efficiently |
+
+---
+
+### 💡 Example
+
+**Input:** `arr = [1, 2, 4, 7]`, `x = 6`
+**Output:** `3`
+**Explanation:**
+`6` should be inserted at index `3` to maintain the sorted order → `[1, 2, 4, 6, 7]`.

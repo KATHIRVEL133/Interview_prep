@@ -1,0 +1,65 @@
+**Problem:**
+We need to search for a target element in a **sorted array**.
+If the target exists, return its **index**; otherwise, return **-1**.
+
+---
+
+### **Brute Force:**
+
+* **Intuition:**
+  We can simply traverse the array linearly and compare each element with the target.
+  If we find the target, we return its index; if not, we return -1 after checking all elements.
+* **Time Complexity:**
+  **O(N)** — We may need to check all elements in the array.
+* **Space Complexity:**
+  **O(1)** — No extra space is used besides a few variables.
+
+---
+
+### **Optimal (Iterative Binary Search):**
+
+* **Intuition:**
+  Since the array is **sorted**, we can use **Binary Search** to reduce the search space in each step.
+  We maintain two pointers `low` and `high`.
+
+  * Find the middle element `mid = (low + high) / 2`.
+  * If `nums[mid] == target`, return `mid`.
+  * If `target > nums[mid]`, search in the **right half** (`low = mid + 1`).
+  * Else, search in the **left half** (`high = mid - 1`).
+    Continue until `low > high`.
+* **Time Complexity:**
+  **O(log N)** — The search space halves at each step.
+* **Space Complexity:**
+  **O(1)** — Only constant extra variables are used.
+
+---
+
+### **Optimal (Recursive Binary Search):**
+
+* **Intuition:**
+  The same logic as the iterative approach, but implemented recursively.
+  At each recursive call:
+
+  * Compute `mid = (low + high) / 2`.
+  * If `nums[mid] == target`, return `mid`.
+  * If `target > nums[mid]`, recursively search the right half (`mid + 1` to `high`).
+  * Otherwise, search the left half (`low` to `mid - 1`).
+    The recursion stops when `low > high`.
+* **Time Complexity:**
+  **O(log N)** — Same as iterative; each recursion halves the search space.
+* **Space Complexity:**
+  **O(log N)** — Due to recursive call stack usage.
+
+---
+
+### 🧠 **Summary Table**
+
+| Approach                    | Time Complexity | Space Complexity | Key Idea                        |
+| --------------------------- | --------------- | ---------------- | ------------------------------- |
+| Brute Force (Linear Search) | O(N)            | O(1)             | Check every element             |
+| Iterative Binary Search     | O(log N)        | O(1)             | Divide search space iteratively |
+| Recursive Binary Search     | O(log N)        | O(log N)         | Divide search space recursively |
+
+---
+
+Would you like me to show the **recursive implementation** of the same `binarySearch` method as well (with code and comments)?
