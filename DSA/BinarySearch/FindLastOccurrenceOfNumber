@@ -1,0 +1,141 @@
+Here are the **structured notes** for your "Last Occurrence Search" program:
+
+---
+
+### **Problem:**
+
+Find the **last occurrence index** of a given element (`key`) in an array.
+If the element does not exist in the array, return `-1`.
+
+---
+
+### **Approach / Logic:**
+
+1. Start scanning the array **from the end** (reverse order).
+2. Compare each element with the `key`.
+3. As soon as a match is found, store the index and **stop the search** (break).
+4. Return the index found, or `-1` if not found.
+
+---
+
+### **Example:**
+
+**Input:**
+`n = 7`,
+`key = 13`,
+`v = {3, 4, 13, 13, 13, 20, 40}`
+
+**Process:**
+
+* Start from the last element and move backwards.
+* First match found at index `4` (0-based index).
+* Return `4`.
+
+**Output:**
+`4`
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — worst case requires scanning the entire array if the key is not present.
+
+### **Space Complexity:**
+
+**O(1)** — no extra memory used except for a few variables.
+
+---
+
+### **Advantages:**
+
+* Direct approach without extra data structures.
+* Efficient if the last occurrence is near the end of the array.
+
+---
+
+### **Disadvantages:**
+
+* Worst case is still linear time.
+* Not optimal if there are frequent searches — a hash map or binary search (sorted array) could be faster.
+
+---
+
+✅ **Key takeaway:**
+Scanning backward is a simple and effective way to find the last occurrence of an element in an unsorted array.
+
+---
+
+If you want, I can now give you a **modified version that works for sorted arrays using binary search** so it finds the last occurrence in **O(log N)** time. That would make your solution much more efficient for large datasets.
+
+Do you want me to do that?
+
+Here are the **structured notes** for your "Last Occurrence Search" program:
+
+---
+
+### **Problem:**
+
+Find the **last occurrence index** of a given element (`key`) in an array.
+If the element does not exist in the array, return `-1`.
+
+---
+
+### **Approach / Logic:**
+
+1. Start scanning the array **from the end** (reverse order).
+2. Compare each element with the `key`.
+3. As soon as a match is found, store the index and **stop the search** (break).
+4. Return the index found, or `-1` if not found.
+
+---
+
+### **Example:**
+
+**Input:**
+`n = 7`,
+`key = 13`,
+`v = {3, 4, 13, 13, 13, 20, 40}`
+
+**Process:**
+
+* Start from the last element and move backwards.
+* First match found at index `4` (0-based index).
+* Return `4`.
+
+**Output:**
+`4`
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — worst case requires scanning the entire array if the key is not present.
+
+### **Space Complexity:**
+
+**O(1)** — no extra memory used except for a few variables.
+
+---
+
+### **Advantages:**
+
+* Direct approach without extra data structures.
+* Efficient if the last occurrence is near the end of the array.
+
+---
+
+### **Disadvantages:**
+
+* Worst case is still linear time.
+* Not optimal if there are frequent searches — a hash map or binary search (sorted array) could be faster.
+
+---
+
+✅ **Key takeaway:**
+Scanning backward is a simple and effective way to find the last occurrence of an element in an unsorted array.
+
+---
+
+If you want, I can now give you a **modified version that works for sorted arrays using binary search** so it finds the last occurrence in **O(log N)** time. That would make your solution much more efficient for large datasets.
+
+Do you want me to do that?

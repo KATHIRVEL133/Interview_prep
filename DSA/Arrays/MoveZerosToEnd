@@ -1,0 +1,143 @@
+Here are your **structured coding notes** for the above program (in your preferred format and **without code**):
+
+---
+
+### **Problem:**
+
+We have to **move all zeros in an array to the end**, while maintaining the **order of non-zero elements**.
+The operation should be done in-place, and the final array must contain all non-zero elements first, followed by zeros.
+
+---
+
+### **Intuition:**
+
+We can create a **temporary array (or list)** to store all **non-zero elements**.
+After collecting them, we copy them back to the original array and **fill the remaining positions with zeros**.
+
+---
+
+### **Steps / Approach:**
+
+1. **Create a temporary list** to store non-zero elements.
+2. **Traverse the array:**
+
+   * If the element is non-zero, add it to the temporary list.
+3. **Count the number of non-zero elements (nz).**
+4. **Copy all non-zero elements** from the temporary list back to the original array.
+5. **Fill the remaining positions** (from `nz` to `n-1`) with zeros.
+
+---
+
+### **Example:**
+
+**Input:**
+`[1, 0, 2, 3, 2, 0, 0, 4, 5, 1]`
+
+**Process:**
+
+* Non-zero elements → `[1, 2, 3, 2, 4, 5, 1]`
+* Copy them to the beginning of the array.
+* Fill the rest with zeros.
+
+**Output:**
+`[1, 2, 3, 2, 4, 5, 1, 0, 0, 0]`
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — Each element is traversed once.
+
+---
+
+### **Space Complexity:**
+
+* **O(N)** — Uses an additional temporary list to store non-zero elements.
+
+---
+
+### **Notes:**
+
+* This approach is **simple** but uses extra space.
+* To make it **optimal (O(1) space)**, we can use the **two-pointer approach**:
+
+  * Keep one pointer for the position to place the next non-zero element.
+  * Traverse the array and shift non-zero elements forward as you go.
+  * Fill remaining positions with zeros after the traversal.
+
+---
+Here are your **structured coding notes** for this program (in the same format as before and without code):
+
+---
+
+### **Problem:**
+
+We have to **move all zeros in an array to the end** while keeping the **relative order of non-zero elements unchanged**.
+The task must be done **in-place** — meaning without using extra space.
+
+---
+
+### **Intuition:**
+
+We use a **two-pointer approach** to rearrange elements efficiently.
+
+* One pointer (`j`) tracks the **position of the first zero**.
+* The other pointer (`i`) scans the array and moves non-zero elements forward by swapping when needed.
+
+---
+
+### **Steps / Approach:**
+
+1. **Find the first zero position:**
+
+   * Traverse the array to locate the index `j` where the first zero appears.
+   * If no zero exists, return the array as is.
+
+2. **Traverse the array using another pointer `i`:**
+
+   * Start from the element right after `j`.
+   * Whenever a **non-zero** element is found, **swap it** with the element at index `j`.
+   * After swapping, increment `j` to move the zero boundary forward.
+
+3. After the full traversal, all non-zero elements will be shifted to the left, and all zeros will be pushed to the right.
+
+---
+
+### **Example:**
+
+**Input:**
+`[1, 0, 2, 3, 2, 0, 0, 4, 5, 1]`
+
+**Process:**
+
+* First zero found at index `1` → `j = 1`
+* Traverse from index `2`:
+
+  * Swap non-zero `2` with position `1` → `[1, 2, 0, 3, 2, 0, 0, 4, 5, 1]`
+  * Swap non-zero `3` with position `2` → `[1, 2, 3, 0, 2, 0, 0, 4, 5, 1]`
+  * Continue until all zeros are shifted right.
+
+**Output:**
+`[1, 2, 3, 2, 4, 5, 1, 0, 0, 0]`
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — The array is traversed once to find the first zero and once to rearrange elements.
+
+---
+
+### **Space Complexity:**
+
+* **O(1)** — In-place swapping is used; no extra space is required.
+
+---
+
+### **Notes:**
+
+* This is the **optimal approach** for this problem.
+* It efficiently shifts all zeros to the right without using extra space and preserves the order of non-zero elements.
+* It’s a common interview question to test understanding of the **two-pointer technique**.
+
+---

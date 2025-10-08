@@ -1,0 +1,145 @@
+Here are your **structured coding notes** for the given Java program (in your standard format and without code):
+
+---
+
+### **Problem:**
+
+We have to find the **Union of two arrays**, meaning we need to return all **unique elements** that appear in either of the two arrays.
+Duplicate elements should appear only once in the result.
+
+---
+
+### **Intuition:**
+
+We can use a **HashMap** (or a **HashSet**) to store elements since it automatically avoids duplicates.
+By inserting all elements of both arrays into the HashMap, we can collect only unique elements to form the union.
+
+---
+
+### **Steps / Approach:**
+
+1. Create a **HashMap** (or HashSet) to store elements and their frequencies.
+2. **Traverse the first array** and insert each element into the HashMap.
+3. **Traverse the second array** and insert each element as well.
+
+   * The `getOrDefault()` method helps in updating frequencies conveniently.
+4. After inserting all elements, the **keys of the HashMap** represent the **unique elements** — i.e., the union of both arrays.
+5. Collect these keys into an **ArrayList** and return it.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
+`arr2 = [2, 3, 4, 4, 5, 11, 12]`
+
+**Process:**
+
+* Insert all elements from both arrays into a HashMap.
+* HashMap will automatically remove duplicates.
+
+**Output (Union):**
+`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]`
+
+---
+
+### **Time Complexity:**
+
+* **O(n + m)** — Each element from both arrays is inserted once into the HashMap.
+* Insertion and lookup in a HashMap take **O(1)** on average.
+
+---
+
+### **Space Complexity:**
+
+* **O(n + m)** — Additional space is used to store all unique elements in the HashMap.
+
+---
+
+### **Notes:**
+
+* Using a **HashSet** instead of a HashMap can simplify the code since we only need unique keys, not frequencies.
+* The order of elements in the final output is **not guaranteed** because HashMap does not maintain order.
+
+  * If order matters, use **LinkedHashSet** instead.
+* This is an **efficient solution** for union problems, especially when arrays are unsorted.
+
+---
+Here are your **structured coding notes** for the given Java program (in your standard concise format):
+
+---
+
+### **Problem:**
+
+We have to find the **Union of two sorted arrays**, meaning we need to combine both arrays into one list containing all **unique elements**, without any duplicates.
+
+---
+
+### **Intuition:**
+
+Since both arrays are **sorted**, we can efficiently find the union using the **two-pointer technique**.
+By comparing elements from both arrays simultaneously, we can skip duplicates and build the union in a single pass.
+
+---
+
+### **Steps / Approach:**
+
+1. Initialize two pointers:
+
+   * `i = 0` for the first array (`arr1`)
+   * `j = 0` for the second array (`arr2`)
+2. Create an empty list `Union` to store unique elements.
+3. Traverse both arrays simultaneously:
+
+   * If `arr1[i] <= arr2[j]`:
+
+     * Add `arr1[i]` to `Union` (only if it’s not already the last added element).
+     * Move `i` forward.
+   * Else:
+
+     * Add `arr2[j]` to `Union` (only if it’s not already the last added element).
+     * Move `j` forward.
+4. After one array is fully traversed, add remaining elements from the other array (skipping duplicates).
+5. Return or print the final `Union` list.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
+`arr2 = [2, 3, 4, 4, 5, 11, 12]`
+
+**Process:**
+
+* Compare elements using two pointers.
+* Add only unique ones to `Union`.
+
+**Output:**
+`[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]`
+
+---
+
+### **Time Complexity:**
+
+**O(n + m)**
+Each element of both arrays is processed once.
+
+---
+
+### **Space Complexity:**
+
+**O(n + m)**
+For storing all unique elements in the `Union` list.
+
+---
+
+### **Notes:**
+
+* Works efficiently only if **both arrays are sorted**.
+* If the arrays are **unsorted**, they must be sorted first before applying this method.
+* Avoids duplicates by checking the **last inserted element** in the result list.
+* This is an **optimal approach** compared to using a HashMap or HashSet for sorted arrays.
+
+---

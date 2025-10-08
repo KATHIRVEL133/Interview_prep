@@ -1,0 +1,154 @@
+Here are the **structured notes** for your “Count Occurrences in Array” program:
+
+---
+
+### **Problem:**
+
+Count how many times a given element (`x`) appears in an array.
+
+---
+
+### **Approach / Logic:**
+
+1. Initialize a counter variable (`cnt`) to zero.
+2. Traverse the array from start to end.
+3. For each element, compare it with `x`.
+4. If the element equals `x`, increment the counter.
+5. Return the counter value.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr = {2, 4, 6, 8, 8, 8, 11, 13}`,
+`n = 8`,
+`x = 8`
+
+**Process:**
+
+* Compare each element with `8`.
+* Found `8` at indices `3`, `4`, `5` → total occurrences = `3`.
+
+**Output:**
+`The number of occurrences is: 3`
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — one full traversal of the array is required.
+
+### **Space Complexity:**
+
+**O(1)** — uses only a counter variable.
+
+---
+
+### **Advantages:**
+
+* Simple and easy to implement.
+* Works for unsorted arrays without preprocessing.
+
+---
+
+### **Disadvantages:**
+
+* Inefficient for large arrays if there are many queries (multiple searches).
+* For sorted arrays, a **binary search-based method** could find occurrences in **O(log N)** time.
+
+---
+
+✅ **Key takeaway:**
+A linear scan is the most straightforward method to count occurrences in an unsorted array, but for large datasets or repeated queries, binary search or hashing methods are more efficient.
+
+---
+
+If you want, I can now give you an **optimized binary search version** that works for sorted arrays to count occurrences in **O(log N)** time instead of **O(N)**. That would make it much faster for large arrays.
+
+Do you want me to do that?
+
+Here are the **detailed notes** for your "Count Occurrences in Sorted Array using Binary Search" program:
+
+---
+
+### **Problem:**
+
+Given a **sorted array**, find the number of times a given element (`x`) appears.
+
+---
+
+### **Approach / Logic:**
+
+#### **Step 1 — First Occurrence Search:**
+
+* Use binary search to find the first occurrence of `x`.
+* If `arr[mid] == x`, store `mid` and search left (`high = mid - 1`) to check for earlier occurrences.
+
+#### **Step 2 — Last Occurrence Search:**
+
+* Use binary search to find the last occurrence of `x`.
+* If `arr[mid] == x`, store `mid` and search right (`low = mid + 1`) to check for later occurrences.
+
+#### **Step 3 — Count Occurrences:**
+
+* If the element exists:
+  `count = lastOccurrence - firstOccurrence + 1`
+* If not found:
+  Return `0`.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr = {2, 4, 6, 8, 8, 8, 11, 13}`,
+`x = 8`
+
+**Process:**
+
+* First occurrence of `8` → index `3`
+* Last occurrence of `8` → index `5`
+* Count = `5 - 3 + 1 = 3`
+
+**Output:**
+`The number of occurrences is: 3`
+
+---
+
+### **Advantages of This Approach:**
+
+* Efficient for **sorted arrays**.
+* Reduces time complexity drastically compared to linear search.
+
+---
+
+### **Time Complexity:**
+
+* Binary search → **O(log N)** for first occurrence + **O(log N)** for last occurrence = **O(log N)** total.
+
+### **Space Complexity:**
+
+* **O(1)** — uses a constant amount of extra space.
+
+---
+
+### **Why This Is Better Than Linear Search:**
+
+* Linear search has **O(N)** time complexity.
+* Binary search exploits sorted order → **O(log N)** time complexity.
+* Especially beneficial for large arrays or repeated queries.
+
+---
+
+### **Key Takeaways:**
+
+* **Binary search is optimal** for searching in sorted arrays.
+* Finding both first and last positions gives the exact number of occurrences efficiently.
+* This technique is useful in problems like frequency counting, duplicate detection, and range queries.
+
+---
+
+If you want, I can also give you a **diagram showing the step-by-step binary search process for this code** so it’s visually easier to understand.
+
+Do you want me to?

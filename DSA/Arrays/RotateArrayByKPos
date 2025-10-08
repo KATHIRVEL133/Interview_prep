@@ -1,0 +1,131 @@
+Here are your **notes (without code)** in the same structured format you’ve been following 👇
+
+---
+
+### **Problem:**
+
+We have to rotate an array to the **right by `k` steps**.
+This means the **last `k` elements** of the array should move to the **front**, and the rest of the elements should shift to the right.
+
+---
+
+### **Intuition:**
+
+We can use an **extra temporary array** to store the last `k` elements.
+Then we **shift** the remaining `n - k` elements to the right by `k` positions.
+Finally, we **copy** the stored elements from the temporary array to the beginning of the array.
+
+---
+
+### **Steps / Approach:**
+
+1. **Handle edge cases:**
+
+   * If the array is empty (`n == 0`), return immediately.
+   * Use `k = k % n` to handle cases where `k` is greater than the array size.
+
+2. **Store the last `k` elements** in a temporary array.
+
+3. **Shift the remaining elements** (`n - k` of them) to the right by `k` positions.
+
+4. **Place the stored elements** from the temporary array at the beginning of the array.
+
+---
+
+### **Output Example:**
+
+**Input:** `[1, 2, 3, 4, 5, 6, 7]`, `k = 2`
+**Output:** `[6, 7, 1, 2, 3, 4, 5]`
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — Each element is moved at most once.
+
+---
+
+### **Space Complexity:**
+
+* **O(K)** — Temporary array of size `k` is used.
+
+---
+
+### **Notes:**
+
+* This method is simple and easy to understand.
+* For an **optimized in-place solution (O(1) space)**, we can use the **reversal algorithm**, where we:
+
+  1. Reverse the entire array.
+  2. Reverse the first `k` elements.
+  3. Reverse the remaining `n - k` elements.
+
+---
+
+Here are your **clean, structured coding notes** for the given program (in your preferred format and without code):
+
+---
+
+### **Problem:**
+
+We have to **rotate an array to the left by `k` steps**.
+This means the **first `k` elements** of the array should move to the **end**, and the remaining elements should shift left.
+
+---
+
+### **Intuition:**
+
+We can solve this problem **in-place** using the **reversal algorithm**.
+By reversing parts of the array strategically, we can achieve the left rotation efficiently without using any extra space.
+
+---
+
+### **Steps / Approach:**
+
+1. **Reverse the first `k` elements** of the array.
+2. **Reverse the remaining `n - k` elements** from index `k` to `n-1`.
+3. **Reverse the entire array.**
+
+   * After these three reversals, the array becomes rotated to the left by `k` positions.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr = [1, 2, 3, 4, 5, 6, 7]`, `k = 2`
+
+**Process:**
+
+1. Reverse first 2 elements → `[2, 1, 3, 4, 5, 6, 7]`
+2. Reverse last 5 elements → `[2, 1, 7, 6, 5, 4, 3]`
+3. Reverse whole array → `[3, 4, 5, 6, 7, 1, 2]`
+
+**Output:**
+`[3, 4, 5, 6, 7, 1, 2]`
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — Each element is swapped at most once during the reversals.
+
+---
+
+### **Space Complexity:**
+
+* **O(1)** — The rotation is done **in-place**, requiring no extra array.
+
+---
+
+### **Notes:**
+
+* This is the **optimal solution** for array rotation problems.
+* For **right rotation**, the reversal order changes:
+
+  1. Reverse the last `k` elements.
+  2. Reverse the first `n - k` elements.
+  3. Reverse the entire array.
+* The same logic works for both left and right rotations with minimal adjustments.
+
+---

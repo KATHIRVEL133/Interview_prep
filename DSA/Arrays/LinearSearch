@@ -1,0 +1,64 @@
+Here are your **structured coding notes** for the given C program (in your usual clean format):
+
+---
+
+### **Problem:**
+
+We have to **search for a given element (`num`)** in an array and return its **index position** if found.
+If the element is **not present**, return `-1`.
+
+---
+
+### **Intuition:**
+
+We can use a simple **linear search** approach — traverse the array from start to end and compare each element with the target number.
+If a match is found, return its index immediately.
+
+---
+
+### **Steps / Approach:**
+
+1. **Iterate through the array** using a loop.
+2. For each element, check if it is **equal to the target number (`num`)**.
+3. If a match is found, **return the index `i`**.
+4. If the loop completes without finding the number, **return `-1`** (indicating not found).
+5. In `main()`, print the returned index.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr = [1, 2, 3, 4, 5]`, `num = 4`
+
+**Process:**
+
+* Compare `1` → not equal
+* Compare `2` → not equal
+* Compare `3` → not equal
+* Compare `4` → match found at index `3`
+
+**Output:**
+`3`
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** — In the worst case, every element is checked once.
+
+---
+
+### **Space Complexity:**
+
+* **O(1)** — Only constant extra space is used.
+
+---
+
+### **Notes:**
+
+* This is a **basic linear search algorithm**, simple and easy to implement.
+* Works for both sorted and unsorted arrays.
+* For **large sorted arrays**, using **binary search (O(log N))** is more efficient.
+
+---
