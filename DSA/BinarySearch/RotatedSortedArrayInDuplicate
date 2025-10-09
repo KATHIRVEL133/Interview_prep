@@ -1,0 +1,92 @@
+Here are the **structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Determine whether a **target element `k`** exists in a **rotated sorted array that may contain duplicates**.
+
+---
+
+### **Intuition:**
+
+In a **rotated sorted array with duplicates**, it’s tricky to apply standard binary search directly because duplicates can make it hard to decide which half of the array is sorted.
+
+Example:
+`[3, 3, 3, 1, 2, 3]` — Here, both halves appear sorted due to duplicates.
+
+To handle this, we use a **modified binary search** with an extra condition to skip over duplicate elements at the boundaries.
+
+---
+
+### **Approach / Steps:**
+
+1. **Initialize pointers:**
+
+   * `low = 0`, `high = n - 1`.
+
+2. **Run a loop while `low <= high`:**
+
+   * Compute `mid = (low + high) / 2`.
+   * If `arr[mid] == k`, return **true** (target found).
+
+3. **Handle duplicates (Edge Case):**
+
+   * If `arr[low] == arr[mid]` and `arr[mid] == arr[high]`,
+     increment `low` and decrement `high` to skip duplicates.
+     Continue to the next iteration.
+
+4. **Check which half is sorted:**
+
+   * **Case 1: Left half is sorted (`arr[low] <= arr[mid]`)**
+
+     * If target lies between `arr[low]` and `arr[mid]`, search left (`high = mid - 1`).
+     * Otherwise, search right (`low = mid + 1`).
+
+   * **Case 2: Right half is sorted**
+
+     * If target lies between `arr[mid]` and `arr[high]`, search right (`low = mid + 1`).
+     * Otherwise, search left (`high = mid - 1`).
+
+5. **If loop ends without finding the element:**
+   Return **false** (target not present).
+
+---
+
+### **Example Walkthrough:**
+
+**Input:**
+`arr = [7, 8, 1, 2, 3, 3, 3, 4, 5, 6]`, `k = 3`
+
+**Process:**
+
+* Initially: `low = 0`, `high = 9`
+* `mid = 4 → arr[mid] = 3 → Target found ✅`
+
+**Output:**
+`Target is present in the array.`
+
+---
+
+### **Time Complexity:**
+
+* **O(log N)** on average — behaves like binary search.
+* **O(N)** in the worst case — when duplicates force us to linearly skip elements (e.g., `[3,3,3,3,3]`).
+
+### **Space Complexity:**
+
+* **O(1)** — constant space used.
+
+---
+
+### **Key Notes:**
+
+* Handles **rotated sorted arrays with duplicates**, unlike the standard binary search.
+* The **duplicate-handling step** (`if (arr[low] == arr[mid] && arr[mid] == arr[high])`) is crucial — prevents infinite loops.
+* Commonly asked in interviews — an extension of **“Search in Rotated Sorted Array”** (LeetCode #33) → this version is **LeetCode #81**.
+* Efficient and elegant — no need for extra data structures.
+
+---
+
+**In short:**
+➡ This algorithm smartly combines **binary search logic** with **duplicate handling** to efficiently determine if a target exists in a rotated sorted array.

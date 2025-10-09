@@ -1,0 +1,74 @@
+Here are the **structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Find the **single (unique) element** in an array where every other element appears **exactly twice**.
+
+---
+
+### **Intuition:**
+
+The XOR (`^`) operation has unique properties that make it perfect for this problem:
+
+* `x ^ x = 0` (a number XORed with itself gives 0)
+* `x ^ 0 = x` (a number XORed with 0 remains the same)
+* XOR is **commutative** and **associative**, meaning the order doesn’t matter.
+
+So, if we XOR all numbers together, the duplicate pairs will cancel out, leaving only the single unique element.
+
+---
+
+### **Steps / Approach:**
+
+1. Initialize a variable `xorr = 0`.
+2. Traverse the array:
+
+   * For each element `arr[i]`, do `xorr = xorr ^ arr[i]`.
+3. After the loop, `xorr` will hold the element that appears only once.
+4. Return `xorr`.
+
+---
+
+### **Example:**
+
+**Input:**
+`arr = [4, 1, 2, 1, 2]`
+
+**Process:**
+
+```
+xorr = 0
+xorr = 0 ^ 4 = 4
+xorr = 4 ^ 1 = 5
+xorr = 5 ^ 2 = 7
+xorr = 7 ^ 1 = 6
+xorr = 6 ^ 2 = 4
+```
+
+**Output:**
+`The single element is: 4`
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — single traversal of the array.
+
+---
+
+### **Space Complexity:**
+
+**O(1)** — uses only one extra variable.
+
+---
+
+### **Notes:**
+
+* Efficient and elegant bitwise solution.
+* Works **only** when every other element appears exactly twice.
+* No need for extra data structures like HashMap or Set.
+* Common interview question to test understanding of **XOR properties**.
+
+---

@@ -1,0 +1,167 @@
+Here are the **structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Find the **length of the longest subarray** whose **sum equals a given value `k`**.
+
+---
+
+### **Intuition:**
+
+We use the concept of **prefix sum** and a **HashMap** to track previously seen sums.
+The idea is that if the **current prefix sum = x**, and we’ve seen a prefix sum **(x - k)** before,
+then the subarray between those two indices sums to **k**.
+
+This helps us find subarrays without checking every possible start and end index (which would be inefficient).
+
+---
+
+### **Steps / Approach:**
+
+1. **Initialize**:
+
+   * A HashMap `preSumMap` to store `(prefixSum → first index where it occurs)`.
+   * Variables `sum = 0` (prefix sum) and `maxLen = 0` (longest length).
+
+2. **Traverse the array**:
+
+   * Add current element to `sum`.
+   * If `sum == k`, the entire array up to index `i` forms a valid subarray. Update `maxLen = i + 1`.
+   * Calculate `rem = sum - k` (the required prefix sum we need to remove to get subarray sum = k).
+   * If `rem` exists in the map:
+
+     * Calculate `len = i - preSumMap.get(rem)` — length of current subarray.
+     * Update `maxLen = max(maxLen, len)`.
+   * If `sum` not already in map, store `sum → i` (we only store the first occurrence for longest length).
+
+3. **Return `maxLen`** as the final answer.
+
+---
+
+### **Example:**
+
+**Input:**
+`a = [2, 3, 5, 1, 9], k = 10`
+
+**Step-by-step:**
+
+| i | a[i] | sum | rem = sum - k | Found in map?        | maxLen | Map (prefixSum → index)        |
+| - | ---- | --- | ------------- | -------------------- | ------ | ------------------------------ |
+| 0 | 2    | 2   | -8            | ❌                    | 0      | {2 → 0}                        |
+| 1 | 3    | 5   | -5            | ❌                    | 0      | {2 → 0, 5 → 1}                 |
+| 2 | 5    | 10  | 0             | ❌                    | 3      | {2 → 0, 5 → 1, 10 → 2}         |
+| 3 | 1    | 11  | 1             | ❌                    | 3      | {2 → 0, 5 → 1, 10 → 2, 11 → 3} |
+| 4 | 9    | 20  | 10            | ✅ (found at index 2) | 2      | ...                            |
+
+**Output:**
+`The length of the longest subarray is: 3`
+(Subarray = [2, 3, 5])
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — each element is processed once, and HashMap lookups are O(1) on average.
+
+---
+
+### **Space Complexity:**
+
+**O(N)** — for storing prefix sums in the HashMap.
+
+---
+
+### **Notes:**
+
+* Efficient for both **positive** and **negative** numbers.
+* Works even when array elements are not sorted.
+* Core concept: **prefix sum + hashing technique**.
+* Common interview question to test understanding of **maps** and **subarray problems**.
+
+---
+
+Here are the **structured coding notes** for your Java program 👇
+
+---
+
+### **Problem:**
+
+Find the **length of the longest subarray** whose **sum equals a given value `k`**, using the **two-pointer (sliding window)** technique.
+
+---
+
+### **Intuition:**
+
+The idea is to use **two pointers** (`left` and `right`) to represent a window (subarray).
+We dynamically adjust the window so that its sum remains ≤ `k`.
+If it exceeds `k`, we shrink the window from the left.
+Whenever the sum equals `k`, we update the maximum length.
+
+This approach is **efficient and linear** — no need for nested loops or extra space.
+
+---
+
+### **Approach / Steps:**
+
+1. **Initialize variables:**
+
+   * `left = 0, right = 0` — represent the sliding window.
+   * `sum = a[0]` — current subarray sum.
+   * `maxLen = 0` — stores the longest valid subarray length.
+
+2. **Traverse the array using `right` pointer:**
+
+   * Add `a[right]` to the current sum.
+   * If `sum > k`, shrink the window by moving `left` forward and subtracting elements until `sum ≤ k`.
+   * If `sum == k`, calculate current window size `(right - left + 1)` and update `maxLen` if it’s larger.
+
+3. **Increment `right` pointer** and continue until the array is completely traversed.
+
+4. **Return `maxLen`** as the final result.
+
+---
+
+### **Example:**
+
+**Input:**
+`a = [2, 3, 5, 1, 9], k = 10`
+
+**Step-by-step:**
+
+| Step | left | right | sum | Action                                        | maxLen |
+| ---- | ---- | ----- | --- | --------------------------------------------- | ------ |
+| 0    | 0    | 0     | 2   | sum < k → move right                          | 0      |
+| 1    | 0    | 1     | 5   | sum < k → move right                          | 0      |
+| 2    | 0    | 2     | 10  | sum == k → update maxLen = 3                  | 3      |
+| 3    | 0    | 3     | 11  | sum > k → subtract a[left]=2 → left=1 → sum=9 | 3      |
+| 4    | 1    | 3     | 9   | move right → right=4, sum=18                  | 3      |
+| 5    | 1    | 4     | 18  | sum > k → subtract until sum ≤ k              | 3      |
+
+✅ **Output:**
+`The length of the longest subarray is: 3`
+(Subarray: `[2, 3, 5]`)
+
+---
+
+### **Time Complexity:**
+
+**O(N)** — each element is processed at most twice (once by `right`, once by `left`).
+
+---
+
+### **Space Complexity:**
+
+**O(1)** — only a few extra variables are used.
+
+---
+
+### **Notes:**
+
+* Works efficiently **only when all elements are non-negative**.
+  (Because negative numbers could invalidate the window logic.)
+* If the array has both positive and negative numbers, use the **prefix sum + HashMap** approach instead.
+* Common interview problem for testing **two-pointer** and **sliding window** techniques.
+
+---

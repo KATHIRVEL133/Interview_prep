@@ -1,0 +1,113 @@
+Here are the **structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Find the **peak element** in an array.
+A **peak element** is one that is **greater than both of its neighbors**.
+
+---
+
+### **Intuition:**
+
+In a **mountain-like array**, a peak exists where elements first increase and then decrease.
+Example: `[1, 2, 3, 4, 5, 3, 1]` → `5` is the **peak**.
+
+We can find the peak efficiently using **binary search** instead of scanning linearly.
+
+---
+
+### **Approach / Steps:**
+
+#### **1️⃣ Handle Edge Cases:**
+
+* If array has only **one element**, it’s the peak → return index `0`.
+* If the **first element** is greater than the second → it’s a peak → return index `0`.
+* If the **last element** is greater than the second last → it’s a peak → return `n - 1`.
+
+---
+
+#### **2️⃣ Binary Search Setup:**
+
+* Set two pointers:
+
+  ```
+  low = 1, high = n - 2
+  ```
+
+  (exclude already checked edges)
+
+---
+
+#### **3️⃣ Check the Middle Element (`mid`):**
+
+* If `arr[mid]` is **greater than both neighbors**:
+
+  ```
+  arr[mid-1] < arr[mid] && arr[mid] > arr[mid+1]
+  ```
+
+  → It’s the **peak element** → return `mid`.
+
+---
+
+#### **4️⃣ Move the Search Boundaries:**
+
+* If we are in the **increasing region** (left slope of mountain):
+
+  ```
+  arr[mid] > arr[mid-1]
+  ```
+
+  → Move right → `low = mid + 1`
+
+* Else (we are in the **decreasing region** or plateau):
+  → Move left → `high = mid - 1`
+
+---
+
+#### **5️⃣ Dummy Return:**
+
+If no element found (theoretically impossible for valid inputs), return `-1`.
+
+---
+
+### **Example Walkthrough:**
+
+**Input:**
+`arr = [1, 2, 3, 4, 5, 6, 7, 8, 5, 1]`
+
+**Process:**
+
+| low | high | mid | arr[mid] | Condition             | Action     |
+| --- | ---- | --- | -------- | --------------------- | ---------- |
+| 1   | 8    | 4   | 5        | increasing            | move right |
+| 5   | 8    | 6   | 7        | increasing            | move right |
+| 7   | 8    | 7   | 8        | 8 > 7 && 8 > 5 → peak | ✅ found    |
+
+**Output:**
+`The peak is at index: 7`
+
+---
+
+### **Time Complexity:**
+
+* **O(log N)** → Binary search divides array each iteration.
+
+### **Space Complexity:**
+
+* **O(1)** → Uses only a few variables.
+
+---
+
+### **Key Points:**
+
+✅ Works for arrays with **exactly one peak** (mountain-like).
+✅ Uses **binary search** for efficient peak detection.
+✅ Handles **edge cases** where the peak is at the start or end.
+
+---
+
+✅ **In short:**
+This algorithm uses **binary search** to efficiently find the index of a **peak element** in **O(log N)** time and **O(1)** space.

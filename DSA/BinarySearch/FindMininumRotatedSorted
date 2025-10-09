@@ -1,0 +1,95 @@
+Here are the **well-structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Find the **minimum element** in a **rotated sorted array**.
+
+---
+
+### **Intuition:**
+
+A **rotated sorted array** is formed by taking a sorted array and rotating it around a pivot.
+Example:
+Sorted → `[0, 1, 2, 3, 4, 5, 6, 7]`
+Rotated → `[4, 5, 6, 7, 0, 1, 2, 3]`
+
+In such an array:
+
+* One half (either left or right) will always be **sorted**.
+* The **minimum element** lies **at the boundary between two sorted parts**.
+
+We can use **binary search** to find that pivot efficiently.
+
+---
+
+### **Approach / Steps:**
+
+1. **Initialize pointers:**
+
+   * `low = 0`
+   * `high = n - 1`
+   * `ans = +∞` (initially set to maximum possible value)
+
+2. **Iterate while `low <= high`:**
+
+   * Compute `mid = (low + high) / 2`.
+
+3. **Check if left half is sorted:**
+
+   * If `arr[low] <= arr[mid]` → left half is sorted.
+
+     * The **smallest element** in this half is `arr[low]`.
+     * Update `ans = min(ans, arr[low])`.
+     * Eliminate this half → `low = mid + 1`.
+
+4. **Otherwise, right half is sorted:**
+
+   * The **smallest element** in this half is `arr[mid]`.
+   * Update `ans = min(ans, arr[mid])`.
+   * Eliminate this half → `high = mid - 1`.
+
+5. **Repeat** until `low > high`.
+
+6. Return the final value of `ans`.
+
+---
+
+### **Example Walkthrough:**
+
+**Input:**
+`arr = [4, 5, 6, 7, 0, 1, 2, 3]`
+
+| Step | low | mid | high | arr[mid] | Sorted Half     | ans | Action                 |
+| ---- | --- | --- | ---- | -------- | --------------- | --- | ---------------------- |
+| 1    | 0   | 3   | 7    | 7        | Left is sorted  | 4   | Move right → `low = 4` |
+| 2    | 4   | 5   | 7    | 1        | Right is sorted | 0   | Move left → `high = 4` |
+| 3    | 4   | 4   | 4    | 0        | Left is sorted  | 0   | Done ✅                 |
+
+**Output:**
+`The minimum element is: 0`
+
+---
+
+### **Time Complexity:**
+
+* **O(log N)** — because it uses binary search.
+
+### **Space Complexity:**
+
+* **O(1)** — constant extra space.
+
+---
+
+### **Key Notes:**
+
+* Works only for **rotated sorted arrays without duplicates**.
+* If duplicates exist, an extra step (like shrinking both ends when equal) is needed.
+* Common interview question — part of binary search variations.
+* Conceptually, it finds the **rotation point** (pivot index).
+
+---
+
+✅ **In short:**
+We use a **modified binary search** to find the **smallest element** in a rotated sorted array by leveraging the property that **one half is always sorted**.

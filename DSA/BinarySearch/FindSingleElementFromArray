@@ -1,0 +1,104 @@
+Here are the **structured coding notes** for your program 👇
+
+---
+
+### **Problem:**
+
+Find the **single non-duplicate element** in a **sorted array** where every other element appears exactly twice.
+
+---
+
+### **Intuition:**
+
+In a **sorted array** where every element appears twice, pairs appear in order:
+
+```
+[1, 1, 2, 2, 3, 3, 4, 4]
+```
+
+If one element appears **only once**, it **breaks the pairing pattern**.
+
+For example:
+`[1, 1, 2, 3, 3, 4, 4] → single = 2`
+
+We can use **binary search** to locate this single element efficiently.
+
+---
+
+### **Approach / Steps:**
+
+#### **1️⃣ Handle Edge Cases:**
+
+* If array size `n == 1`, return that element — it’s the only one.
+* If the first element is not equal to the second → it’s the single one.
+* If the last element is not equal to the second-last → it’s the single one.
+
+#### **2️⃣ Binary Search Setup:**
+
+* Use two pointers:
+  `low = 1`, `high = n - 2` (exclude already checked edges).
+* Loop while `low <= high`.
+
+#### **3️⃣ Check the Middle Element (`mid`):**
+
+* If `arr[mid]` is **not equal** to both neighbors (`arr[mid-1]` and `arr[mid+1]`),
+  → that’s the **single non-duplicate element** → return it.
+
+#### **4️⃣ Determine the Search Side:**
+
+The array before the single element follows a **pairing pattern**:
+
+* Before the single element, pairs start at **even indices**.
+* After the single element, pairs start at **odd indices**.
+
+So:
+
+* If `(mid % 2 == 0 && arr[mid] == arr[mid+1])` **or** `(mid % 2 == 1 && arr[mid] == arr[mid-1])`:
+  → the single element lies **to the right**, so move `low = mid + 1`.
+
+* Else, move `high = mid - 1`.
+
+#### **5️⃣ End of Loop:**
+
+If no element is found (theoretically impossible in correct input), return `-1`.
+
+---
+
+### **Example Walkthrough:**
+
+**Input:**
+`arr = [1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6]`
+
+**Process:**
+
+| low | high | mid | arr[mid] | Condition        | Action     |
+| --- | ---- | --- | -------- | ---------------- | ---------- |
+| 1   | 9    | 5   | 3        | paired correctly | move right |
+| 6   | 9    | 7   | 5        | not paired       | move left  |
+| 6   | 6    | 6   | 4        | single element   | ✅ found    |
+
+**Output:**
+`The single element is: 4`
+
+---
+
+### **Time Complexity:**
+
+* **O(log N)** → Binary search halves the array each iteration.
+
+### **Space Complexity:**
+
+* **O(1)** → Uses only a few variables.
+
+---
+
+### **Key Points:**
+
+* Works only when the **array is sorted** and all other elements appear **exactly twice**.
+* Uses **binary search pattern parity logic** — even/odd index matching.
+* Much faster than the brute-force O(N) XOR approach when the array is large.
+
+---
+
+✅ **In short:**
+This binary search method efficiently finds the **unique non-duplicate element** in a sorted array where every other number appears twice — in **O(log N)** time and **O(1)** space.
