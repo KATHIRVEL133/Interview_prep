@@ -1,0 +1,205 @@
+Here are **detailed and easy-to-understand notes** for your given Java program 👇
+
+---
+
+## 🔹 **Problem Statement:**
+
+You are given an array containing only **0s, 1s, and 2s**.
+Your task is to **sort the array** in ascending order **without using any built-in sort function**.
+
+This is also known as the **“Sort Colors”** problem or **Dutch National Flag problem** (simplified version using counting).
+
+---
+
+## 🔹 **Intuition:**
+
+Since the array contains only **three distinct elements (0, 1, 2)**,
+we don’t need a full sorting algorithm like QuickSort or MergeSort.
+
+Instead, we can:
+
+1. **Count** the number of 0s, 1s, and 2s.
+2. **Overwrite** the array based on these counts.
+
+This is an efficient **counting approach**.
+
+---
+
+## 🔹 **Step-by-Step Explanation:**
+
+### **1️⃣ Counting 0s, 1s, and 2s**
+
+```java
+int cnt0 = 0, cnt1 = 0, cnt2 = 0;
+
+for (int i = 0; i < n; i++) {
+    if (arr.get(i) == 0) cnt0++;
+    else if (arr.get(i) == 1) cnt1++;
+    else cnt2++;
+}
+```
+
+* Traverse the entire array once.
+* Count how many 0s, 1s, and 2s are present.
+* After this loop:
+
+  * `cnt0` → number of 0s
+  * `cnt1` → number of 1s
+  * `cnt2` → number of 2s
+
+---
+
+### **2️⃣ Overwrite the Original Array**
+
+Now we rewrite the elements in order:
+first all 0s, then all 1s, and finally all 2s.
+
+```java
+for (int i = 0; i < cnt0; i++) arr.set(i, 0);
+for (int i = cnt0; i < cnt0 + cnt1; i++) arr.set(i, 1);
+for (int i = cnt0 + cnt1; i < n; i++) arr.set(i, 2);
+```
+
+Explanation:
+
+* The first loop fills the first `cnt0` positions with `0`.
+* The second loop fills the next `cnt1` positions with `1`.
+* The third loop fills the remaining positions with `2`.
+
+---
+
+### **3️⃣ Example Walkthrough**
+
+**Input:**
+
+```
+arr = [0, 2, 1, 2, 0, 1]
+```
+
+**Step 1: Count occurrences**
+
+```
+cnt0 = 2
+cnt1 = 2
+cnt2 = 2
+```
+
+**Step 2: Rewrite the array**
+
+```
+→ [0, 0, 1, 1, 2, 2]
+```
+
+✅ **Output:**
+
+```
+After sorting:
+0 0 1 1 2 2
+```
+
+---
+
+## 🔹 **Time Complexity:**
+
+* Counting loop → O(N)
+* Overwriting loop → O(N)
+* **Total:** O(2N) ≈ **O(N)**
+
+## 🔹 **Space Complexity:**
+
+* Uses only a few variables for counting → **O(1)**
+
+---
+
+## 🔹 **Advantages:**
+
+✅ Simple and efficient (linear time)
+✅ No extra data structure needed
+✅ Easy to implement and understand
+
+---
+
+## 🔹 **Limitations:**
+
+⚠️ Only works when the array contains **three distinct values (0, 1, 2)**.
+If there are more unique elements, a general sorting algorithm would be required.
+
+---
+
+## 🧠 **Summary:**
+
+> This algorithm sorts an array of 0s, 1s, and 2s using **counting** —
+> first count each element, then overwrite the array based on counts.
+> It runs in **O(N)** time and **O(1)** space, making it very efficient for this specific problem.
+
+---
+
+Would you like me to also explain the **Dutch National Flag Algorithm** (an in-place version without counting)?
+
+Here are **simple and clear notes** for your code 👇
+
+---
+
+## 🔹 **Program Purpose**
+
+The program sorts an array that contains only **0s, 1s, and 2s** —
+**without using extra space or counting**.
+
+It uses the **Dutch National Flag Algorithm**.
+
+---
+
+## 🔹 **Idea**
+
+We use **three pointers**:
+
+* `low` → keeps track of where the next `0` should go
+* `mid` → current element being checked
+* `high` → keeps track of where the next `2` should go
+
+---
+
+## 🔹 **Logic**
+
+1. **If arr[mid] == 0**
+   → swap `arr[low]` and `arr[mid]`
+   → move both `low++` and `mid++`
+
+2. **If arr[mid] == 1**
+   → element is already in the middle
+   → just move `mid++`
+
+3. **If arr[mid] == 2**
+   → swap `arr[mid]` and `arr[high]`
+   → move `high--`
+   → do **not** move `mid` (since swapped value needs to be checked)
+
+---
+
+## 🔹 **Example**
+
+**Input:** `[0, 2, 1, 2, 0, 1]`
+
+**Steps:**
+
+* Move 0s to the left
+* Move 2s to the right
+* 1s automatically stay in the middle
+
+**Output:**
+`[0, 0, 1, 1, 2, 2]`
+
+---
+
+## 🔹 **Complexity**
+
+* **Time:** O(N) → each element is checked once
+* **Space:** O(1) → sorting done in place
+
+---
+
+## 🧠 **Summary**
+
+✅ Efficient in-place sorting of 0s, 1s, and 2s
+✅ No extra array or counting needed
+✅ Uses simple swapping logic with three pointers

@@ -1,0 +1,296 @@
+Here are the **clear and structured notes** for your given code snippet 👇
+
+---
+
+### **Problem:**
+
+Find **two indices** in an array such that the **sum of the elements equals the target value** —
+but this time using an **optimized HashMap approach**.
+
+This is the **efficient O(N) solution** to the *Two Sum problem*.
+
+---
+
+### **Intuition:**
+
+Instead of checking all possible pairs (as in the brute force method),
+we can use a **HashMap** to store elements we’ve already seen,
+so we can find the complement (i.e., `target - currentElement`) in **constant time**.
+
+---
+
+### **Approach / Steps:**
+
+#### **1️⃣ Initialize answer array**
+
+```java
+int[] ans = new int[2];
+ans[0] = ans[1] = -1;
+```
+
+This stores the indices of the two numbers that sum up to the target.
+Initially set to `-1` to indicate that no pair is found yet.
+
+---
+
+#### **2️⃣ Create a HashMap**
+
+```java
+HashMap<Integer, Integer> mpp = new HashMap<>();
+```
+
+The map will store each element as a **key**, and its **index** as the value.
+This helps us find whether the complement (`target - num`) exists quickly.
+
+---
+
+#### **3️⃣ Traverse the Array**
+
+For each element in the array:
+
+```java
+for (int i = 0; i < n; i++) {
+    int num = arr[i];
+    int moreNeeded = target - num;
+```
+
+We calculate how much more we need (`moreNeeded`) to reach the target.
+
+---
+
+#### **4️⃣ Check if Complement Exists**
+
+If the complement (`moreNeeded`) is already in the map,
+we have found the two numbers that sum to the target:
+
+```java
+if (mpp.containsKey(moreNeeded)) {
+    ans[0] = mpp.get(moreNeeded);
+    ans[1] = i;
+    return ans;
+}
+```
+
+Here:
+
+* `mpp.get(moreNeeded)` gives the index of the previously seen number.
+* `i` is the index of the current number.
+
+---
+
+#### **5️⃣ Otherwise, Store Current Number**
+
+If the complement is not found, store the current element and its index:
+
+```java
+mpp.put(arr[i], i);
+```
+
+This ensures that for future elements, this number can serve as a complement if needed.
+
+---
+
+#### **6️⃣ Return Result**
+
+If the loop completes and no pair is found:
+
+```java
+return ans;  // still [-1, -1]
+```
+
+---
+
+### **Example:**
+
+**Input:**
+
+```
+arr = [2, 6, 5, 8, 11]
+target = 14
+```
+
+**Execution:**
+
+| i | arr[i] | moreNeeded | HashMap before | Found? | Action             |
+| - | ------ | ---------- | -------------- | ------ | ------------------ |
+| 0 | 2      | 12         | {}             | ❌      | Put (2,0)          |
+| 1 | 6      | 8          | {2=0}          | ❌      | Put (6,1)          |
+| 2 | 5      | 9          | {2=0,6=1}      | ❌      | Put (5,2)          |
+| 3 | 8      | 6          | {2=0,6=1,5=2}  | ✅      | Found 6 at index 1 |
+
+✅ **Output:** `[1, 3]`
+(because `arr[1] + arr[3] = 6 + 8 = 14`)
+
+---
+
+### **Time Complexity:**
+
+* **O(N)** → Each element is processed once.
+* Lookup and insertion in HashMap take **O(1)** on average.
+
+### **Space Complexity:**
+
+* **O(N)** → In the worst case, all elements are stored in the HashMap.
+
+---
+
+### **Key Points:**
+
+✅ Much more efficient than the brute-force method (O(N²)).
+✅ Works on **unsorted arrays**.
+✅ HashMap provides **constant-time lookups** for complements.
+❌ Returns only one valid pair (first found).
+
+---
+
+✅ **In short:**
+This optimized approach uses a **HashMap** to store visited elements and their indices,
+allowing you to find the **two-sum pair in linear time (O(N))**.
+
+
+Here are **well-structured notes** for your given code 👇
+
+---
+
+## 🔹 **Problem Statement:**
+
+You are given an array of integers and a target value.
+You need to determine **if there exists a pair of numbers in the array** whose **sum equals the target**.
+
+Return `"YES"` if such a pair exists, otherwise return `"NO"`.
+
+---
+
+## 🔹 **Intuition:**
+
+Instead of checking all pairs (which would take O(N²)),
+we can use the **two-pointer technique** on a **sorted array** to find the pair efficiently.
+
+Sorting helps us move pointers intelligently —
+if the sum is too small, we move the **left pointer rightward** (to increase sum),
+and if the sum is too large, we move the **right pointer leftward** (to decrease sum).
+
+---
+
+## 🔹 **Step-by-Step Approach:**
+
+### **1️⃣ Sort the Array**
+
+```java
+Arrays.sort(arr);
+```
+
+Sorting helps us apply the **two-pointer** approach easily.
+After sorting, the smallest element is at the left and the largest at the right.
+
+---
+
+### **2️⃣ Initialize Two Pointers**
+
+```java
+int left = 0, right = n - 1;
+```
+
+* `left` starts at the beginning (smallest element).
+* `right` starts at the end (largest element).
+
+---
+
+### **3️⃣ Iterate While `left < right`**
+
+We keep checking the sum of elements at the two pointers:
+
+```java
+int sum = arr[left] + arr[right];
+```
+
+---
+
+### **4️⃣ Compare the Sum with Target**
+
+#### ✅ If `sum == target`
+
+We found the pair — return `"YES"` immediately:
+
+```java
+return "YES";
+```
+
+#### ➡️ If `sum < target`
+
+The sum is too small, so move the **left pointer right**:
+
+```java
+left++;
+```
+
+This increases the sum since elements on the right are larger.
+
+#### ⬅️ If `sum > target`
+
+The sum is too large, so move the **right pointer left**:
+
+```java
+right--;
+```
+
+This decreases the sum since elements on the left are smaller.
+
+---
+
+### **5️⃣ If Loop Ends**
+
+If no pair is found:
+
+```java
+return "NO";
+```
+
+---
+
+## 🔹 **Example Walkthrough:**
+
+**Input:**
+
+```
+arr = [2, 6, 5, 8, 11]
+target = 14
+```
+
+**Sorted Array:** `[2, 5, 6, 8, 11]`
+
+| Left | Right | arr[left] | arr[right] | Sum | Action                  |
+| ---- | ----- | --------- | ---------- | --- | ----------------------- |
+| 0    | 4     | 2         | 11         | 13  | Sum < target → left++   |
+| 1    | 4     | 5         | 11         | 16  | Sum > target → right--  |
+| 1    | 3     | 5         | 8          | 13  | Sum < target → left++   |
+| 2    | 3     | 6         | 8          | 14  | ✅ Found! → return "YES" |
+
+✅ **Output:** `"YES"`
+
+---
+
+## 🔹 **Time Complexity:**
+
+* **O(N log N)** → Sorting the array.
+* **O(N)** → Two-pointer traversal.
+* **Overall:** **O(N log N)**
+
+## 🔹 **Space Complexity:**
+
+* **O(1)** → Constant extra space used.
+
+---
+
+## 🔹 **Key Takeaways:**
+
+✅ Uses **sorting + two pointers** — an optimal approach.
+✅ Much faster than brute-force (O(N²)).
+✅ Works only if **array can be sorted** (doesn’t preserve original order).
+✅ Efficient for checking **pair existence**, not index retrieval.
+
+---
+
+### 🧠 **Summary:**
+
+> This solution efficiently checks if any two numbers in an array sum up to a target using the **two-pointer method** after sorting the array — achieving **O(N log N)** time complexity.

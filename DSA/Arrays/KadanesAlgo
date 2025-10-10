@@ -1,0 +1,161 @@
+Here are **simple and clear notes** for your code 👇
+
+---
+
+## 🔹 **Program Purpose**
+
+This program finds the **maximum subarray sum** in a given array using **Kadane’s Algorithm**.
+It helps identify the contiguous subarray that gives the **largest possible sum**.
+
+---
+
+## 🔹 **Concept – Kadane’s Algorithm**
+
+Kadane’s Algorithm is a famous **Dynamic Programming** approach that keeps track of:
+
+* The **current running sum** of subarray elements.
+* The **maximum sum** found so far.
+
+Whenever the running sum becomes negative, we **reset** it to zero because continuing a negative sum will only decrease the total.
+
+---
+
+## 🔹 **Logic Breakdown**
+
+### 🧩 Step 1: Initialize
+
+* `maxi = Long.MIN_VALUE` → stores the maximum subarray sum found so far.
+* `sum = 0` → current running sum.
+
+---
+
+### 🧩 Step 2: Traverse the Array
+
+For each element:
+
+1. Add `arr[i]` to `sum`.
+2. Update `maxi` if `sum > maxi`.
+3. If `sum` becomes negative, reset it to `0` (start a new subarray).
+
+---
+
+### 🧩 Step 3: Return Result
+
+After the loop ends, `maxi` holds the **maximum subarray sum**.
+
+---
+
+## 🔹 **Example**
+
+**Input:** `[-2, 1, -3, 4, -1, 2, 1, -5, 4]`
+
+**Steps:**
+
+* Max subarray is `[4, -1, 2, 1]`
+* Sum = `6`
+
+✅ **Output:**
+`The maximum subarray sum is: 6`
+
+---
+
+## 🔹 **Complexity**
+
+* **Time Complexity:** O(N) → single pass through the array
+* **Space Complexity:** O(1) → only variables used
+
+---
+
+## 🧠 **Summary**
+
+✅ Uses **Kadane’s Algorithm**
+✅ Efficient (linear time, constant space)
+✅ Resets negative running sums to optimize total
+✅ Finds the **maximum possible sum of any contiguous subarray**
+
+Another version of problem
+
+Here are **clear and simple notes** for your code 👇
+
+---
+
+## 🔹 **Program Purpose**
+
+This program finds the **maximum subarray sum** and also prints the **subarray itself** using **Kadane’s Algorithm** (an optimized dynamic programming approach).
+
+---
+
+## 🔹 **Concept – Kadane’s Algorithm**
+
+Kadane’s Algorithm helps find the **largest sum of a contiguous subarray** in an array of integers efficiently in **O(N)** time.
+It resets the sum when it becomes negative and keeps track of the **best (maximum)** sum found so far.
+
+---
+
+## 🔹 **Logic Breakdown**
+
+### 🧩 Step 1: Initialization
+
+* `maxi = Long.MIN_VALUE` → stores the maximum subarray sum found so far.
+* `sum = 0` → stores the current subarray sum.
+* `start, ansStart, ansEnd` → used to track the indices of the subarray that gives the maximum sum.
+
+---
+
+### 🧩 Step 2: Traverse the Array
+
+For each element `arr[i]`:
+
+1. If `sum == 0`, mark `start = i` (possible new subarray start).
+2. Add the current element to `sum`.
+3. If the current `sum > maxi`, update `maxi` and record the start (`ansStart`) and end (`ansEnd`) indices.
+4. If `sum < 0`, reset `sum = 0` because continuing a negative sum reduces the total.
+
+---
+
+### 🧩 Step 3: Print the Subarray
+
+After the loop:
+
+* Print all elements from `ansStart` to `ansEnd` → this is the subarray giving the **maximum sum**.
+
+---
+
+### 🧩 Step 4: Return the Maximum Sum
+
+Return the value stored in `maxi`.
+
+---
+
+## 🔹 **Example**
+
+**Input:**
+`[-2, 1, -3, 4, -1, 2, 1, -5, 4]`
+
+**Steps:**
+
+* The subarray `[4, -1, 2, 1]` gives the maximum sum.
+* Sum = `6`
+
+✅ **Output:**
+
+```
+The subarray is: [4 -1 2 1 ]  
+The maximum subarray sum is: 6
+```
+
+---
+
+## 🔹 **Complexity**
+
+* **Time Complexity:** O(N) → single traversal of the array
+* **Space Complexity:** O(1) → uses only a few variables
+
+---
+
+## 🧠 **Summary**
+
+✅ Uses **Kadane’s Algorithm** to find maximum subarray sum
+✅ Also prints the **actual subarray** giving the result
+✅ Efficient – linear time, constant space
+✅ Automatically skips negative running sums for optimization

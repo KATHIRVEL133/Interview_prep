@@ -1,0 +1,92 @@
+Here are **clear and simple notes** for your code 👇
+
+---
+
+## 🔹 **Program Purpose**
+
+This program finds the **floor value of the square root** of a given number `n` using **Binary Search**.
+
+---
+
+## 🔹 **Concept – Floor Square Root**
+
+The **floor square root** of a number is the **largest integer** whose square is **less than or equal to** the number.
+For example:
+
+* √28 ≈ 5.29 → floor(√28) = **5**
+
+---
+
+## 🔹 **Logic Explanation**
+
+### 🧩 Step 1: Initialization
+
+* `low = 1`, `high = n` → search range for the answer.
+* The answer lies between 1 and `n`.
+
+---
+
+### 🧩 Step 2: Binary Search Process
+
+We repeatedly check the **midpoint** of the range:
+
+1. Compute
+   `mid = (low + high) / 2`
+   `val = mid * mid` (square of mid)
+
+2. **Compare `val` with `n`:**
+
+   * If `val ≤ n` →
+
+     * `mid` could be the answer, but there might be a bigger one.
+     * Move right: `low = mid + 1`
+   * If `val > n` →
+
+     * `mid` is too large, move left: `high = mid - 1`
+
+3. Continue until `low > high`.
+
+---
+
+### 🧩 Step 3: Return Result
+
+After the loop ends,
+
+* `high` will hold the **largest integer** whose square ≤ `n`.
+* Hence, return `high`.
+
+---
+
+## 🔹 **Example**
+
+**Input:**
+`n = 28`
+
+**Steps:**
+
+* mid = 14 → 14² = 196 > 28 → high = 13
+* mid = 7 → 49 > 28 → high = 6
+* mid = 3 → 9 < 28 → low = 4
+* mid = 5 → 25 < 28 → low = 6
+* mid = 6 → 36 > 28 → high = 5 → stop
+
+✅ **Output:**
+
+```
+The floor of square root of 28 is: 5
+```
+
+---
+
+## 🔹 **Complexity**
+
+* **Time Complexity:** O(log N) → binary search reduces range by half each step
+* **Space Complexity:** O(1) → constant extra space
+
+---
+
+## 🧠 **Summary**
+
+✅ Finds the integer part (floor) of √n
+✅ Uses efficient binary search instead of linear or built-in methods
+✅ Prevents overflow by using `long` for multiplication

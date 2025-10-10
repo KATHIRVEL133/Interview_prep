@@ -1,0 +1,67 @@
+Here are **clear and simple notes** for your code 👇
+
+---
+
+## 🔹 **Program Purpose**
+
+This program finds the **majority element** in an array —
+the element that appears **more than n/2 times**, using the **Moore’s Voting Algorithm**.
+
+---
+
+## 🔹 **Idea**
+
+Moore’s Voting Algorithm works on the principle of **cancellation** —
+pairs of different elements cancel each other, leaving the majority element (if it exists) in the end.
+
+---
+
+## 🔹 **Logic**
+
+### 🧩 Step 1: Find the potential majority element
+
+* Initialize:
+
+  * `cnt = 0` (vote counter)
+  * `el = 0` (candidate element)
+* Traverse the array:
+
+  * If `cnt == 0`, take current element as the new candidate (`el = v[i]`)
+  * If current element equals `el`, increment count (`cnt++`)
+  * Else, decrement count (`cnt--`)
+
+After the loop, `el` holds the **potential majority element**.
+
+---
+
+### 🧩 Step 2: Verify the candidate
+
+* Count how many times `el` appears in the array.
+* If its count > `n/2`, return `el`.
+* Otherwise, return `-1`.
+
+---
+
+## 🔹 **Example**
+
+**Input:** `[2, 2, 1, 1, 1, 2, 2]`
+**Step 1 result:** Candidate → `2`
+**Step 2:** Count(2) = 4 > 7/2 → Majority element = `2`
+
+✅ **Output:** `2`
+
+---
+
+## 🔹 **Complexity**
+
+* **Time:** O(N) → single pass to find candidate + verification
+* **Space:** O(1) → only variables used
+
+---
+
+## 🧠 **Summary**
+
+✅ Uses **Moore’s Voting Algorithm**
+✅ Very **efficient** (linear time, constant space)
+✅ **Checks** candidate validity before returning
+✅ Finds the element appearing **more than n/2 times**
